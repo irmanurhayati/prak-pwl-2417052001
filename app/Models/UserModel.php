@@ -1,0 +1,18 @@
+<?php
+
+namespace App\Models;
+
+use Illuminate\Database\Eloquent\Model;
+
+class UserModel extends Model
+{
+    protected $table = 'user'; // atau nama tabel kamu
+    protected $fillable = ['nama', 'nim', 'kelas_id'];
+
+    public function getUser()
+    {
+        return $this->join('kelas', 'kelas.id', '=', 'user.kelas_id')
+                    ->select('user.*', 'kelas.nama_kelas as nama_kelas')
+                    ->get();
+    }
+}
