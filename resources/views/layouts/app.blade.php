@@ -19,7 +19,6 @@
             min-height: 100vh;
         }
 
-        /* Glassmorphism Card Style */
         .glass-card {
             background: rgba(30, 41, 59, 0.7);
             backdrop-filter: blur(16px);
