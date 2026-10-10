@@ -1,18 +1,13 @@
 @extends('layouts.app')
 
 @section('content')
-
 <div class="container my-5">
-
     <div class="row justify-content-center">
-
         <div class="col-lg-6 col-md-8">
-
             <div class="glass-card p-4 p-md-5">
 
                 <!-- Header -->
                 <div class="text-center mb-4">
-
                     <div
                         class="d-inline-flex p-3 rounded-circle mb-3"
                         style="
@@ -30,44 +25,29 @@
                     <p class="text-secondary small">
                         Isi formulir berikut untuk menambahkan data mata kuliah.
                     </p>
-
                 </div>
 
-
                 <!-- Error Validation -->
-                @if ($errors->any())
-
-                    <div class="alert alert-danger">
-
+                @if (isset($errors) && $errors->any())
+                    <div class="alert alert-danger" style="background: rgba(239, 68, 68, 0.15); border: 1px solid rgba(239, 68, 68, 0.3); color: #f87171;">
                         <strong>Terjadi kesalahan:</strong>
-
                         <ul class="mb-0 mt-2">
-
                             @foreach ($errors->all() as $error)
-
                                 <li>{{ $error }}</li>
-
                             @endforeach
-
                         </ul>
-
                     </div>
-
                 @endif
-
 
                 <!-- Form -->
                 <form
                     action="{{ route('matakuliah.store') }}"
                     method="POST"
                 >
-
                     @csrf
-
 
                     <!-- Nama Mata Kuliah -->
                     <div class="mb-4">
-
                         <label
                             for="nama_mk"
                             class="form-label text-light fw-medium"
@@ -89,13 +69,10 @@
                                 border-color: rgba(255, 255, 255, 0.15) !important;
                             "
                         >
-
                     </div>
-
 
                     <!-- SKS -->
                     <div class="mb-4">
-
                         <label
                             for="sks"
                             class="form-label text-light fw-medium"
@@ -119,13 +96,10 @@
                                 border-color: rgba(255, 255, 255, 0.15) !important;
                             "
                         >
-
                     </div>
-
 
                     <!-- Button -->
                     <div class="d-flex gap-2">
-
                         <a
                             href="{{ route('matakuliah.index') }}"
                             class="btn btn-outline-secondary p-3 rounded-3 w-50 fw-semibold text-light border-0"
@@ -141,17 +115,11 @@
                             <i class="fa-solid fa-save me-2"></i>
                             Simpan Data
                         </button>
-
                     </div>
-
                 </form>
 
             </div>
-
         </div>
-
     </div>
-
 </div>
-
 @endsection

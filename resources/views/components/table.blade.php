@@ -2,10 +2,11 @@
     <table class="table table-dark table-hover align-middle mb-0" style="background: transparent;">
         <thead>
             <tr class="text-uppercase text-secondary fs-7" style="border-bottom: 2px solid rgba(255, 255, 255, 0.1);">
-                <th class="py-3 px-4">ID</th>
+                <th class="py-3 px-4" width="8%">ID</th>
                 <th class="py-3 px-4">Nama Mahasiswa</th>
-                <th class="py-3 px-4">NPM / NIM</th>
-                <th class="py-3 px-4 text-center">Kelas</th>
+                <th class="py-3 px-4" width="20%">NPM / NIM</th>
+                <th class="py-3 px-4 text-center" width="18%">Kelas</th>
+                <th class="py-3 px-4 text-center" width="22%">Aksi</th>
             </tr>
         </thead>
         <tbody style="border-top: none;">
@@ -22,7 +23,7 @@
                 </td>
                 <td class="py-3 px-4">
                     <span class="badge bg-dark border border-secondary text-info px-3 py-2 rounded-3 font-monospace">
-                        {{ $user->nim ?? $user->npm }}
+                        {{ $user->npm ?? $user->nim }}
                     </span>
                 </td>
                 <td class="py-3 px-4 text-center">
@@ -30,10 +31,32 @@
                         <i class="fa-solid fa-graduation-cap me-1"></i> {{ $user->nama_kelas }}
                     </span>
                 </td>
+                <td class="py-3 px-4 text-center">
+                    <div class="d-inline-flex gap-2">
+                        <a href="{{ route('user.edit', $user->id) }}"
+                           class="btn btn-sm btn-outline-warning rounded-3 d-inline-flex align-items-center gap-1 px-3 py-1">
+                            <i class="fa-solid fa-user-pen"></i>
+                            <span>Edit</span>
+                        </a>
+
+                        <form action="{{ route('user.destroy', $user->id) }}"
+                              method="POST"
+                              style="display:inline;">
+                            @csrf
+                            @method('DELETE')
+                            <button type="submit"
+                                    class="btn btn-sm btn-outline-danger rounded-3 d-inline-flex align-items-center gap-1 px-3 py-1"
+                                    onclick="return confirm('Yakin ingin menghapus data mahasiswa ini?')">
+                                <i class="fa-solid fa-trash"></i>
+                                <span>Hapus</span>
+                            </button>
+                        </form>
+                    </div>
+                </td>
             </tr>
             @empty
             <tr>
-                <td colspan="4" class="text-center py-5 text-muted">
+                <td colspan="5" class="text-center py-5 text-muted">
                     <i class="fa-solid fa-folder-open fs-1 mb-3 d-block"></i>
                     Belum ada data pengguna yang tersimpan.
                 </td>
